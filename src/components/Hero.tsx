@@ -37,8 +37,8 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 1.1 }}
         animate={{ opacity: 0.6, scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute inset-0 z-0 bg-cover bg-top bg-no-repeat"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/CAP.png')" }}
       ></motion.div>
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/80 via-transparent to-black/90 pointer-events-none"></div>
 
@@ -46,40 +46,37 @@ export default function Hero() {
 
 
 
-      {/* LAYER 2: TEXT (z-10) - Behind the mask */}
-      <div className="absolute inset-0 z-10 w-full h-full flex items-center px-4 md:pl-10 md:pr-24 pt-32 md:pt-0 pointer-events-none">
+      {/* LAYER 2: CONTENT (z-30) */}
+      <div className="absolute inset-0 z-30 w-full h-full flex flex-col items-center justify-center px-4 pt-20 pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "backOut" }}
-          className="flex flex-col items-start w-full md:w-1/2"
+          className="flex flex-col items-center text-center pointer-events-auto"
         >
-          <h1 className="text-6xl md:text-7xl font-black text-white uppercase tracking-wider drop-shadow-2xl">
+          <h1 className="text-6xl md:text-8xl font-black text-white uppercase tracking-wider drop-shadow-[0_0_20px_rgba(16,185,129,0.3)]">
             <span className="text-emerald-500">Campus</span>
             <br />
             Ambassador
           </h1>
-          <p className="mt-4 text-emerald-100/70 text-lg md:text-xl font-light tracking-wide max-w-sm">
+          <p className="mt-6 text-emerald-100/90 text-lg md:text-xl font-light tracking-wide max-w-lg drop-shadow-md">
             Join the elite league of students leading entrepreneurship in campuses across the nation.
           </p>
-        </motion.div>
-      </div>
 
-      {/* LAYER 4: BUTTONS (z-30) - In front of everything */}
-      <div className="absolute inset-0 z-30 w-full h-full flex items-center justify-end px-8 md:pl-24 md:pr-40 pt-32 md:pt-0 pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className="flex flex-col gap-6 items-end mt-12 md:mt-0 w-full md:w-auto pointer-events-auto"
-        >
-          <Link href="/register" className="bg-gradient-to-r from-emerald-700 to-emerald-400 text-white font-medium px-8 py-3 text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.6)] w-48 flex items-center justify-center">
-            Register Now
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-6 items-center mt-12 w-full justify-center"
+          >
+            <Link href="/register" className="bg-gradient-to-r from-emerald-700 to-emerald-400 text-white font-medium px-10 py-4 text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.6)] w-56 flex items-center justify-center border border-emerald-500/50">
+              Register Now
+            </Link>
 
-          <Link href="/login" className="bg-gradient-to-r from-emerald-700 to-emerald-400 text-white font-medium px-8 py-3 text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.6)] w-48 flex items-center justify-center">
-            Login
-          </Link>
+            <Link href="/login" className="bg-gradient-to-r from-emerald-700 to-emerald-400 text-white font-medium px-10 py-4 text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.6)] w-56 flex items-center justify-center border border-emerald-500/50">
+              Login
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 
