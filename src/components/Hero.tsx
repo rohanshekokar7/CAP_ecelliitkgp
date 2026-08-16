@@ -54,12 +54,12 @@ export default function Hero() {
           transition={{ duration: 1, ease: "backOut" }}
           className="flex flex-col items-center text-center pointer-events-auto"
         >
-          <h1 className="text-6xl md:text-8xl font-black text-white uppercase tracking-wider drop-shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+          <h1 className="text-6xl md:text-[5rem] leading-none font-black text-white uppercase tracking-wider drop-shadow-[0_0_20px_rgba(16,185,129,0.3)]">
             <span className="text-emerald-500">Campus</span>
             <br />
             Ambassador
           </h1>
-          <p className="mt-6 text-emerald-100/90 text-lg md:text-xl font-light tracking-wide max-w-lg drop-shadow-md">
+          <p className="mt-6 text-blue-100/90 text-lg md:text-xl font-light tracking-wide max-w-lg drop-shadow-md">
             Join the elite league of students leading entrepreneurship in campuses across the nation.
           </p>
 
@@ -67,13 +67,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-6 items-center mt-12 w-full justify-center"
+            className="flex flex-col sm:flex-row gap-5 items-center mt-10 w-full justify-center"
           >
-            <Link href="/register" className="bg-gradient-to-r from-emerald-700 to-emerald-400 text-white font-medium px-10 py-4 text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.6)] w-56 flex items-center justify-center border border-emerald-500/50">
+            <Link href="/register" className="bg-transparent text-white font-medium px-8 py-3 text-base rounded-full hover:scale-105 hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 shadow-lg hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] w-48 flex items-center justify-center border border-white">
               Register Now
             </Link>
 
-            <Link href="/login" className="bg-gradient-to-r from-emerald-700 to-emerald-400 text-white font-medium px-10 py-4 text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.6)] w-56 flex items-center justify-center border border-emerald-500/50">
+            <Link href="/login" className="bg-transparent text-white font-medium px-8 py-3 text-base rounded-full hover:scale-105 hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 shadow-lg hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] w-48 flex items-center justify-center border border-white">
               Login
             </Link>
           </motion.div>
