@@ -35,7 +35,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center transition-all duration-1000 bg-[#0a0a0a] overflow-hidden ${isExiting ? 'opacity-0 pointer-events-none scale-110' : 'opacity-100'
+      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center transition-all duration-1000 bg-[#0a0a0a] overflow-hidden ${isExiting ? 'opacity-0 pointer-events-none scale-110' : 'opacity-100'
         }`}
     >
       {/* Smoky Background Approximation using CSS radial gradients */}
