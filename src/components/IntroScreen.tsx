@@ -13,24 +13,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
 
   const handleEnter = () => {
     setIsEntering(true);
-
-    // Trigger the custom boot effect audio provided by user
-    try {
-      const audio = new Audio('/audio/boot_sequence.mpeg');
-      audio.volume = 0.8;
-      audio.play().catch(err => console.log("Audio play deferred or failed: ", err));
-    } catch (error) {
-      console.log("Audio initialization failed:", error);
-    }
-
-    // Wait for the animation to complete before fading out
-    setTimeout(() => {
-      setIsExiting(true);
-      // Wait for the CSS fade-out transition to complete before unmounting
-      setTimeout(() => {
-        onEnter();
-      }, 1000);
-    }, 4500);
+    // Removed old audio playback to allow video audio to play without clashing
   };
 
   return (
@@ -45,20 +28,28 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
       <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] animate-[pulse-glow_4s_infinite] pointer-events-none"></div>
 
       {isEntering ? (
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="relative w-80 h-32 md:w-[600px] md:h-[250px] animate-pulse drop-shadow-[0_0_30px_rgba(16,185,129,0.5)] transition-transform duration-1000 hover:scale-105 mb-4">
-            <Image
-              src="/e_cell_logo.png"
-              alt="E-Cell Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-          <div className="mt-8 w-64 h-[2px] bg-emerald-900/50 overflow-hidden relative">
-            <div className="absolute top-0 left-0 h-full bg-emerald-400 w-full origin-left animate-[scale-x_4s_ease-in-out_forwards]"></div>
-          </div>
-        </div>
+        <video
+          src="/introvideo.mp4"
+          autoPlay
+          playsInline
+          className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] object-cover z-20 -translate-x-1/2 -translate-y-1/2 -rotate-90"
+          ref={(el) => {
+            if (el) el.playbackRate = 2.5;
+          }}
+          onEnded={() => {
+            setIsExiting(true);
+            setTimeout(() => {
+              onEnter();
+            }, 1000);
+          }}
+          onError={() => {
+            // Fallback in case video fails to load
+            setIsExiting(true);
+            setTimeout(() => {
+              onEnter();
+            }, 1000);
+          }}
+        />
       ) : (
         <div className="relative z-10 flex flex-col items-center justify-center select-none mt-10">
 

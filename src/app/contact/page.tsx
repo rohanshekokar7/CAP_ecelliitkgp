@@ -12,21 +12,21 @@ const team = [
     {
         name: "CHAITANYA GHUGE",
         role: "EVENTS AND PR HEAD",
-        image: "/loki.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJMdFlNqyv0iRquYx4RAQ1KhUXfcUFkUAzIqNxXfvGpQ&s=10",
         email: "manas@ecell.in",
         phone: "+91 99999 99999"
     },
     {
         name: "RITESH THOSARE",
         role: "EVENTS AND PR HEAD",
-        image: "/cap.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLQs0bTf6S0x5raSe5nx4rVshC9d4yYLZcmEIUMb6q03icVD84GJ9WqHk&s=10",
         email: "aditya@ecell.in",
         phone: "+91 88888 88888"
     },
     {
         name: "SUMIT RAUT",
         role: "WEB AND TECHNICAL HEAD",
-        image: "/ironman.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQajPNAC2e4HDSXUAgbduG134FHO07BRGIVtZ_TruTZJQ&s=10",
         email: "yash@ecell.in",
         phone: "+91 77777 77777"
     },

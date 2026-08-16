@@ -21,6 +21,12 @@ export default function Home() {
       window.history.scrollRestoration = "manual";
       window.scrollTo(0, 0);
 
+      // On a fresh page load (or refresh), the window object is reset.
+      if (!(window as any).__APP_LOADED__) {
+        sessionStorage.removeItem("hasEnteredSite");
+        (window as any).__APP_LOADED__ = true;
+      }
+
       if (sessionStorage.getItem("hasEnteredSite") === "true") {
         setHasEntered(true);
       }
