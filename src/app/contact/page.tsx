@@ -10,23 +10,23 @@ import Footer from "@/components/Footer";
 
 const team = [
     {
-        name: "MANAS GUPTA",
+        name: "CHAITANYA GHUGE",
         role: "EVENTS AND PR HEAD",
-        image: "https://i.pravatar.cc/300?img=11",
+        image: "/loki.jpg",
         email: "manas@ecell.in",
         phone: "+91 99999 99999"
     },
     {
-        name: "ADITYA AVINASH PUND",
+        name: "RITESH THOSARE",
         role: "EVENTS AND PR HEAD",
-        image: "https://i.pravatar.cc/300?img=12",
+        image: "/cap.jpg",
         email: "aditya@ecell.in",
         phone: "+91 88888 88888"
     },
     {
-        name: "YASH KUMAR SAHAY",
+        name: "SUMIT RAUT",
         role: "WEB AND TECHNICAL HEAD",
-        image: "https://i.pravatar.cc/300?img=13",
+        image: "/ironman.jpg",
         email: "yash@ecell.in",
         phone: "+91 77777 77777"
     },
@@ -49,13 +49,6 @@ export default function ContactPage() {
     return (
         <main className="min-h-screen bg-black flex flex-col relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/0 via-emerald-500/50 to-emerald-500/0 z-50"></div>
-
-            <div className="absolute top-8 left-8 z-50">
-                <Link href="/" className="flex items-center gap-2 text-emerald-500 hover:text-white font-mono tracking-widest uppercase transition-colors group px-4 py-2 border border-transparent hover:border-emerald-500 bg-slate-900/50 rounded-sm">
-                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                    <span>Back</span>
-                </Link>
-            </div>
 
             <div className="flex-grow pt-32 pb-24">
                 {/* Contact Us - Team Section */}

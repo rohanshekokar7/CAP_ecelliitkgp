@@ -103,177 +103,72 @@ export default function Testimonials() {
   const [selectedCard, setSelectedCard] = useState<TestimonialCard | null>(null);
 
   const renderCard = (card: TestimonialCard, index: number) => {
-    switch (card.type) {
-      case "parchment":
-        return (
-          <div 
-            key={`${card.id}-${index}`}
-            onClick={() => setSelectedCard(card)}
-            className="w-[340px] md:w-[380px] shrink-0 relative p-6 bg-[#ecd8a5] text-slate-900 rounded-sm shadow-[0_15px_30px_rgba(0,0,0,0.85)] border border-[#d6b97d] transition-transform duration-300 hover:scale-105 hover:-rotate-1 hover:z-30 cursor-pointer group"
-            style={{
-              clipPath: 'polygon(0% 0%, 100% 0%, 98% 97%, 100% 100%, 0% 98%)'
-            }}
-          >
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-b from-red-500 to-red-800 border border-red-300 shadow-md z-30"></div>
-            <div className="absolute -top-3 -left-3 w-16 h-6 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 opacity-85 border-t border-b border-slate-300 shadow-md rotate-[-25deg] z-30"></div>
-            <div className="absolute -bottom-3 -right-3 w-16 h-6 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 opacity-85 border-t border-b border-slate-300 shadow-md rotate-[15deg] z-30"></div>
+    // Array of premium, dark-themed note colors fitting the apocalyptic/Marvel theme
+    const colors = [
+      "bg-[#d9b752] text-slate-900", // Burnt Yellow
+      "bg-[#9c3d3d] text-white",     // Rust Crimson
+      "bg-[#3a5266] text-white",     // Slate Blueprint
+      "bg-[#3a5a40] text-white",     // Military Green
+      "bg-[#a68a61] text-slate-900", // Kraft Paper
+    ];
+    const colorClass = colors[index % colors.length];
+    
+    // Vary the tilt slightly for each note
+    const rotation = (index % 2 === 0 ? 1 : -1) * ((index % 3) + 2);
+    // Adjust underline color based on if it's a dark or light note
+    const underlineColor = colorClass.includes("text-white") ? "decoration-white/30" : "decoration-black/20";
+    const headerBorder = colorClass.includes("text-white") ? "border-white/20" : "border-black/10";
 
-            <div className="flex justify-between items-start mb-3 border-b border-slate-800/20 pb-2">
-              <h3 className="font-marker text-lg md:text-xl text-slate-900 uppercase tracking-tight">
-                {card.headline}
-              </h3>
-              <div className="w-9 h-9 shrink-0 text-slate-900">
-                <svg viewBox="0 0 100 100" className="w-full h-full fill-current">
-                  <path d="M50 10 C30 10 15 25 15 50 C15 75 30 90 50 90 C70 90 85 75 85 50 C85 25 70 10 50 10 Z M35 45 C40 45 45 40 45 35 C45 30 40 25 35 25 C30 25 25 30 25 35 C25 40 30 45 35 45 Z M65 45 C70 45 75 40 75 35 C75 30 70 25 65 25 C60 25 55 30 55 35 C55 40 60 45 65 45 Z M50 60 C40 60 35 70 35 80 L65 80 C65 70 60 60 50 60 Z" />
-                </svg>
-              </div>
-            </div>
+    return (
+      <div 
+        key={`${card.id}-${index}`}
+        onClick={() => setSelectedCard(card)}
+        className={`w-[320px] md:w-[340px] h-[340px] shrink-0 relative p-6 ${colorClass} shadow-[5px_15px_20px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-105 hover:z-30 cursor-pointer group flex flex-col justify-between`}
+        style={{
+          transform: `rotate(${rotation}deg)`,
+          // subtle fold effect on bottom right corner
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%)'
+        }}
+      >
+        {/* Sticky Tape */}
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-8 bg-white/30 shadow-sm border border-white/20 rotate-[-3deg] z-10 backdrop-blur-sm"></div>
 
-            <p className="font-marker text-sm leading-relaxed text-slate-900 mb-4 min-h-[90px]">
-              {card.content}
-            </p>
+        {/* Fold visual */}
+        <div className="absolute bottom-0 right-0 w-[10%] h-[10%] bg-black/20 rounded-tl-lg shadow-[-2px_-2px_4px_rgba(0,0,0,0.2)]"></div>
 
-            <span className="font-handwriting font-bold text-xs md:text-sm text-slate-800 block text-right">
-              {card.signature}
-            </span>
-          </div>
-        );
+        <div>
+          <h3 className={`font-marker text-lg md:text-xl uppercase font-bold mb-4 border-b ${headerBorder} pb-2`}>
+            {card.headline || "TESTIMONIAL"}
+          </h3>
+          
+          {/* Text is underlined as requested */}
+          <p className={`font-handwriting font-bold text-lg md:text-xl leading-relaxed mb-4 underline ${underlineColor} underline-offset-4 line-clamp-6`}>
+            {card.content}
+          </p>
+        </div>
 
-      case "cardboard":
-        return (
-          <div 
-            key={`${card.id}-${index}`}
-            onClick={() => setSelectedCard(card)}
-            className="w-[340px] md:w-[380px] shrink-0 relative p-6 bg-[#a3794b] text-slate-950 rounded-md shadow-[0_15px_30px_rgba(0,0,0,0.85)] border-2 border-[#825c34] transition-transform duration-300 hover:scale-105 hover:rotate-1 hover:z-30 cursor-pointer group"
-          >
-            <div className="absolute top-2 left-4 w-3.5 h-3.5 rounded-full bg-gradient-to-b from-red-600 to-red-900 border border-red-400 shadow-md"></div>
-            <div className="absolute top-2 right-4 w-3.5 h-3.5 rounded-full bg-gradient-to-b from-red-600 to-red-900 border border-red-400 shadow-md"></div>
-            <div className="absolute -top-3 -right-2 w-14 h-6 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 opacity-90 border-t border-b border-slate-300 shadow-md rotate-[30deg] z-30"></div>
-
-            <h3 className="font-marker text-lg md:text-xl text-slate-950 uppercase mb-3 tracking-wide border-b border-slate-900/30 pb-1">
-              {card.headline}
-            </h3>
-
-            <p className="font-handwriting font-extrabold text-sm leading-relaxed text-slate-950 mb-4 min-h-[90px]">
-              {card.content}
-            </p>
-
-            <span className="font-marker text-xs md:text-sm text-slate-900 block text-right">
-              {card.signature}
-            </span>
-          </div>
-        );
-
-      case "slate":
-        return (
-          <div 
-            key={`${card.id}-${index}`}
-            onClick={() => setSelectedCard(card)}
-            className="w-[340px] md:w-[380px] shrink-0 relative p-6 bg-[#1a2126] text-slate-100 rounded-sm shadow-[0_20px_35px_rgba(0,0,0,0.9)] border-2 border-[#313c45] transition-transform duration-300 hover:scale-105 hover:-rotate-1 hover:z-30 cursor-pointer group"
-          >
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-7 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 opacity-90 border-t border-b border-slate-300 shadow-md rotate-[-2deg] z-30"></div>
-
-            <h3 className="font-chalk text-2xl text-white tracking-widest underline mb-3">
-              {card.headline}
-            </h3>
-
-            <p className="font-chalk text-xl text-slate-200 leading-snug mb-4 min-h-[90px]">
-              {card.content}
-            </p>
-
-            <div className="flex justify-between items-center border-t border-slate-700/60 pt-2">
-              <div className="flex gap-1">
-                <div className="w-2 h-4 bg-slate-400 rounded-sm"></div>
-                <div className="w-2 h-4 bg-slate-400 rounded-sm"></div>
-                <div className="w-2 h-4 bg-slate-400 rounded-sm"></div>
-              </div>
-              <span className="font-chalk text-lg text-emerald-400">
-                {card.signature}
-              </span>
-            </div>
-          </div>
-        );
-
-      case "typewriter":
-        return (
-          <div 
-            key={`${card.id}-${index}`}
-            onClick={() => setSelectedCard(card)}
-            className="w-[420px] md:w-[460px] shrink-0 relative p-6 bg-[#f2e7cc] text-slate-900 rounded-sm shadow-[0_15px_30px_rgba(0,0,0,0.85)] border border-[#dfceaa] transition-transform duration-300 hover:scale-105 hover:rotate-1 hover:z-30 cursor-pointer group"
-          >
-            <div className="absolute -top-3 -left-3 w-16 h-6 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 opacity-85 border-t border-b border-slate-300 shadow-md rotate-[-35deg] z-30"></div>
-
-            <div className="flex gap-3 items-start">
-              <div className="flex-1">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-typewriter text-xs text-slate-600 font-bold tracking-widest">
-                    {card.date || "OCT 204X"}
-                  </span>
-                  <span className="font-typewriter font-black text-xs text-red-700 uppercase tracking-widest border-2 border-red-700 px-1.5 py-0.5 rotate-[-3deg]">
-                    {card.stamp || "CONFIDENTIAL"}
-                  </span>
-                </div>
-
-                <p className="font-typewriter text-xs leading-relaxed text-slate-900 mb-3 font-semibold min-h-[85px]">
-                  {card.content}
-                </p>
-
-                <span className="font-typewriter font-bold text-xs text-slate-800 block">
-                  {card.signature}
-                </span>
-              </div>
-
-              {card.polaroidUrl && (
-                <div className="w-32 bg-white p-1.5 border border-slate-300 shadow-md rotate-[4deg] shrink-0">
-                  <img 
-                    src={card.polaroidUrl} 
-                    alt="Polaroid" 
-                    className="w-full h-24 object-cover"
-                  />
-                  <span className="font-handwriting text-[10px] text-slate-700 text-center block mt-1">
-                    {card.polaroidCaption || "Proof"}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-
-      case "map":
-        return (
-          <div 
-            key={`${card.id}-${index}`}
-            onClick={() => setSelectedCard(card)}
-            className="w-[340px] md:w-[380px] shrink-0 relative p-6 bg-[#e3d3a3] text-slate-900 rounded-sm shadow-[0_15px_30px_rgba(0,0,0,0.85)] border border-[#cbba87] transition-transform duration-300 hover:scale-105 hover:-rotate-1 hover:z-30 cursor-pointer group"
-            style={{
-              backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)',
-              backgroundSize: '16px 16px'
-            }}
-          >
-            <div className="absolute -top-3 left-1/3 w-16 h-6 bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 opacity-85 border-t border-b border-slate-300 shadow-md rotate-[8deg] z-30"></div>
-
-            <div className="flex justify-between items-start mb-2">
-              <h3 className="font-marker text-lg text-slate-950 uppercase">
-                {card.headline}
-              </h3>
-              <Compass className="w-6 h-6 text-slate-800 shrink-0" />
-            </div>
-
-            <p className="font-handwriting font-bold text-sm leading-relaxed text-slate-950 mb-4 min-h-[90px]">
-              {card.content}
-            </p>
-
-            <span className="font-marker text-xs md:text-sm text-slate-900 block text-right">
-              {card.signature}
-            </span>
-          </div>
-        );
-    }
+        <span className="font-marker text-sm block text-right mt-auto opacity-80">
+          - {card.signature}
+        </span>
+      </div>
+    );
   };
 
   return (
     <section className="py-24 bg-[#0a0c0e] relative text-white overflow-hidden select-none" id="testimonials">
-      
+      <style>{`
+        @keyframes custom-marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-custom-marquee {
+          animation: custom-marquee 35s linear infinite;
+        }
+        .animate-custom-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       {/* Dark Grungy Wall Texture Background */}
       <div 
         className="absolute inset-0 bg-[#0d0f12] opacity-95 pointer-events-none"
@@ -309,18 +204,10 @@ export default function Testimonials() {
         </div>
 
         {/* 100% End-To-End Full Viewport Width Continuous Moving Marquee Track */}
-        <div className="w-full overflow-hidden py-10 relative">
-          <motion.div 
-            className="flex gap-8 items-center w-max cursor-grab active:cursor-grabbing px-4"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              ease: "linear",
-              duration: 35,
-            }}
-          >
+        <div className="w-full overflow-hidden py-10 relative group">
+          <div className="flex gap-8 items-center w-max cursor-grab active:cursor-grabbing px-4 animate-custom-marquee">
             {marqueeItems.map((card, idx) => renderCard(card, idx))}
-          </motion.div>
+          </div>
         </div>
 
       </div>

@@ -176,7 +176,7 @@ export default function Incentives() {
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white uppercase font-serif tracking-wider drop-shadow-[0_0_20px_rgba(16,185,129,0.3)] leading-tight break-words hyphens-auto pr-4">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-black text-white uppercase font-serif tracking-wider drop-shadow-[0_0_20px_rgba(16,185,129,0.3)] leading-tight break-words pr-4">
                     {activePartner.name}
                   </h3>
                   

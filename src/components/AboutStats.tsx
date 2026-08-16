@@ -52,7 +52,7 @@ const storyPhases: StoryPhase[] = [
   }
 ];
 
-const TOTAL_FRAMES = 45;
+const TOTAL_FRAMES = 100;
 
 export default function AboutStats() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -66,11 +66,12 @@ export default function AboutStats() {
     offset: ["start start", "end end"]
   });
 
-  // Preload 45 high-FPS video sequence frames for 60FPS video scrubbing
+  // Preload 100 high-FPS video sequence frames for 60FPS video scrubbing
   useEffect(() => {
     const loadedImages: HTMLImageElement[] = [];
     for (let i = 0; i < TOTAL_FRAMES; i++) {
       const img = new Image();
+      // Pads single digits with 0 (00 to 09), leaves double digits as is (10 to 99)
       const num = i < 10 ? `0${i}` : `${i}`;
       img.src = `/frames/seq_${num}.png`;
       loadedImages.push(img);
@@ -82,33 +83,46 @@ export default function AboutStats() {
   useEffect(() => {
     let animId: number;
     let currentFrame = 0;
+    let lastDrawnFrame = -1;
+    let lastPhase = -1;
 
     const render = () => {
       const progress = scrollYProgress.get();
       const targetFrame = Math.min(TOTAL_FRAMES - 1, Math.max(0, progress * (TOTAL_FRAMES - 1)));
 
       // Linear interpolation (Lerp) for high-precision 60FPS video playback
-      currentFrame += (targetFrame - currentFrame) * 0.18;
+      currentFrame += (targetFrame - currentFrame) * 0.12; // Smoother lerp factor
       const frameIdx = Math.round(currentFrame);
 
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext("2d");
-        const img = imagesRef.current[frameIdx];
+      // Only redraw if the frame has actually changed to prevent high GPU/CPU usage
+      if (frameIdx !== lastDrawnFrame) {
+        const canvas = canvasRef.current;
+        if (canvas) {
+          const ctx = canvas.getContext("2d", { alpha: true });
+          const img = imagesRef.current[frameIdx];
 
-        if (ctx && img && img.complete && img.naturalWidth !== 0) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          if (ctx && img && img.complete && img.naturalWidth !== 0) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            lastDrawnFrame = frameIdx;
+          }
         }
       }
 
-      // Update story text phase based on scroll progress
-      if (progress < 0.35) {
-        setActivePhaseIndex(0);
-      } else if (progress < 0.70) {
-        setActivePhaseIndex(1);
+      // Update story text phase based on specific frame numbers
+      let nextPhase = 0;
+      if (frameIdx < 33) {
+        nextPhase = 0;
+      } else if (frameIdx < 67) {
+        nextPhase = 1;
       } else {
-        setActivePhaseIndex(2);
+        nextPhase = 2;
+      }
+
+      // Only trigger React state update if the phase actually changed
+      if (nextPhase !== lastPhase) {
+        setActivePhaseIndex(nextPhase);
+        lastPhase = nextPhase;
       }
 
       animId = requestAnimationFrame(render);
@@ -249,7 +263,7 @@ export default function AboutStats() {
 
           {/* Bottom Video Scroll Scrub Indicator */}
           <div className="flex items-center justify-between text-slate-400 font-mono text-xs pt-4 border-t border-slate-900">
-            <span>45-FRAME VIDEO SCRUB (60 FPS)</span>
+            <span>100-FRAME VIDEO SCRUB (60 FPS)</span>
             <div className="flex items-center gap-2 text-emerald-400">
               <span className="uppercase tracking-widest">{currentPhase.title}</span>
               <ArrowRight className="w-4 h-4 animate-pulse" />

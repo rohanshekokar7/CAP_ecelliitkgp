@@ -44,43 +44,7 @@ export default function Hero() {
 
 
 
-      {/* Navbar (z-50) */}
-      <motion.nav
-        variants={{
-          visible: { y: 0, opacity: 1 },
-          hidden: { y: "-100%", opacity: 0 }
-        }}
-        initial="visible"
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 w-full z-[100] flex items-center justify-between px-6 md:px-12 py-4 pointer-events-auto transition-colors duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"}`}
-      >
-        {/* Logo */}
-        <div className="flex items-center">
-          <Image
-            src="/e_cell_logo.png"
-            alt="E-Cell Logo"
-            width={260}
-            height={56}
-            className="h-14 w-auto object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
-          />
-        </div>
 
-        {/* Links */}
-        <div className="hidden md:flex items-center gap-10">
-          <a href="#about" className="text-white font-normal text-base hover:text-emerald-400 transition-colors hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">About Us</a>
-          <a href="#why" className="text-white font-normal text-base hover:text-emerald-400 transition-colors hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">Why Us</a>
-          <a href="#incentives" className="text-white font-normal text-base hover:text-emerald-400 transition-colors hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">Incentives</a>
-          <a href="/terms" className="text-white font-normal text-base hover:text-emerald-400 transition-colors hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">FAQs and Terms</a>
-          <Link href="/contact" className="text-white font-normal text-base hover:text-emerald-400 transition-colors hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">Contact Us</Link>
-
-          <Link href="/register">
-            <button className="bg-transparent border border-white/70 text-white font-medium text-base px-6 py-2 rounded-full hover:bg-emerald-500 hover:text-black hover:border-emerald-500 hover:scale-105 hover:shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all duration-300 flex items-center gap-1 ml-4">
-              Register <ArrowRight className="w-5 h-5 ml-1" />
-            </button>
-          </Link>
-        </div>
-      </motion.nav>
 
       {/* LAYER 2: TEXT (z-10) - Behind the mask */}
       <div className="absolute inset-0 z-10 w-full h-full flex items-center px-4 md:pl-10 md:pr-24 pt-32 md:pt-0 pointer-events-none">
