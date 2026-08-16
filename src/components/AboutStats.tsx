@@ -202,7 +202,7 @@ export default function AboutStats() {
             </div>
 
             {/* RIGHT SIDE: Dynamic Text Panel (Balanced Font Size & Proper Layout Fit) */}
-            <div className="w-full lg:w-[45%] flex flex-col justify-center space-y-5 relative z-10 lg:pl-16 xl:pl-24 transform lg:translate-x-6">
+            <div className="w-full lg:w-[45%] flex flex-col justify-center space-y-5 relative z-10 lg:pl-8 xl:pl-12 lg:pr-16 xl:pr-24">
               
               <AnimatePresence mode="wait">
                 <motion.div

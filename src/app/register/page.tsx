@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, Send } from "lucide-react";
 
 export default function Register() {
@@ -14,6 +15,8 @@ export default function Register() {
     expectedParticipants: "",
     queries: "",
   });
+  
+  const router = useRouter();
   
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -57,6 +60,11 @@ export default function Register() {
         expectedParticipants: "",
         queries: "",
       });
+      
+      // Redirect to home page after a short delay
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     } catch (err: any) {
       setError(err.message);
     } finally {

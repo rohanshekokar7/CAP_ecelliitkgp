@@ -153,11 +153,11 @@ export default function EngagementTrack() {
         </div>
 
         {/* RIGHT COLUMN: Gauntlet Magic Circle & Infinity Stones (Swapped to Right) */}
-        <div className="flex-1 flex items-center justify-center relative w-full lg:-mr-20 shrink-0">
+        <div className="flex-1 flex items-center justify-center relative w-full lg:pr-8 xl:pr-16 shrink-0">
           
           {/* Outer Orbit Container: Rotates Clockwise in Idle State, Freezes Static on Click */}
           <motion.div 
-            className="relative w-[380px] h-[380px] sm:w-[550px] sm:h-[550px] md:w-[900px] md:h-[900px] flex items-center justify-center"
+            className="relative w-[380px] h-[380px] sm:w-[550px] sm:h-[550px] md:w-[900px] md:h-[900px] flex items-center justify-center lg:scale-[0.80] xl:scale-90 transform-gpu"
             animate={selectedStone === null ? { rotate: 360 } : { rotate: 0 }}
             transition={selectedStone === null ? { repeat: Infinity, duration: 40, ease: "linear" } : { duration: 0.5 }}
           >

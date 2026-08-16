@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, LogIn } from "lucide-react";
 
 export default function Login() {
@@ -9,6 +10,8 @@ export default function Login() {
     email: "",
     password: "",
   });
+  
+  const router = useRouter();
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -28,7 +31,7 @@ export default function Login() {
     // Simulate login for now
     setTimeout(() => {
       setLoading(false);
-      setError("Invalid credentials. Please try again.");
+      router.push("/");
     }, 1500);
   };
 
