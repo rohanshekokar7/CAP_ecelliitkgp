@@ -1,0 +1,42 @@
+"use server";
+
+import { z } from "zod";
+import prisma from "@/lib/prisma";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+export async function submitContactForm(prevState: unknown, formData: FormData) {
+  const data = Object.fromEntries(formData.entries());
+  
+  const result = contactSchema.safeParse(data);
+  
+  if (!result.success) {
+    return {
+      errors: result.error.flatten().fieldErrors,
+      message: "Form validation failed.",
+    };
+  }
+
+  try {
+    await prisma.contactSubmission.create({
+      data: {
+        name: result.data.name,
+        email: result.data.email,
+        message: result.data.message,
+      },
+    });
+
+    return {
+      message: "Protocol Sent! Command Center has received your message.",
+      success: true,
+    };
+  } catch {
+    return {
+      message: "Internal Server Error. Try again later.",
+    };
+  }
+}

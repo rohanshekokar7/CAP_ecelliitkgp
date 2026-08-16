@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  password      String?
+  role          String    @default("RECRUIT")
+  college       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  agentName String
+  content   String
+  avatarUrl String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+}
+
+model LiveStats {
+  id       String @id @default(cuid())
+  key      String @unique
+  value    Int    @default(0)
+}
+
+model Registration {
+  id                    String   @id @default(cuid())
+  name                  String
+  college               String
+  contactNumber         String
+  email                 String
+  motivation            String
+  expectedParticipants  String
+  queries               String?
+  createdAt             DateTime @default(now())
+}
