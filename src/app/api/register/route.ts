@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { createClient } from '@/lib/supabase/server';
 
 export async function POST(req: Request) {
   try {
@@ -14,20 +14,21 @@ export async function POST(req: Request) {
     }
 
     // Save to database
-    const registration = await prisma.registration.create({
-      data: {
-        name: data.name,
-        college: data.college,
-        contactNumber: data.contactNumber,
-        email: data.email,
-        motivation: data.motivation,
-        expectedParticipants: data.expectedParticipants,
-        queries: data.queries || null,
-      },
-    });
+    const supabase = await createClient();
+    const { data: registration, error } = await supabase.from('Registration').insert([{
+      name: data.name,
+      college: data.college,
+      contactNumber: data.contactNumber,
+      email: data.email,
+      motivation: data.motivation,
+      expectedParticipants: data.expectedParticipants,
+      queries: data.queries || null,
+    }]).select();
+
+    if (error) throw error;
 
     return NextResponse.json(
-      { message: 'Registration successful!', registration },
+      { message: 'Registration successful!', registration: registration?.[0] },
       { status: 201 }
     );
   } catch (error: any) {

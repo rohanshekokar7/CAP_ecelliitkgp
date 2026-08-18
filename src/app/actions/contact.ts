@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import prisma from "@/lib/prisma";
+import { createClient } from "@/lib/supabase/server";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -22,19 +22,21 @@ export async function submitContactForm(prevState: unknown, formData: FormData) 
   }
 
   try {
-    await prisma.contactSubmission.create({
-      data: {
-        name: result.data.name,
-        email: result.data.email,
-        message: result.data.message,
-      },
-    });
+    const supabase = await createClient();
+    const { error } = await supabase.from('ContactSubmission').insert([{
+      name: result.data.name,
+      email: result.data.email,
+      message: result.data.message,
+    }]);
+
+    if (error) throw error;
 
     return {
       message: "Protocol Sent! Command Center has received your message.",
       success: true,
     };
-  } catch {
+  } catch (error) {
+    console.error("Contact form error:", error);
     return {
       message: "Internal Server Error. Try again later.",
     };

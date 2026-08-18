@@ -1,15 +1,19 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import { createClient } from "@/lib/supabase/server";
 
 export async function GET() {
   try {
-    const testimonials = await prisma.testimonial.findMany({
-      where: { isActive: true },
-      orderBy: { createdAt: 'desc' }
-    });
+    const supabase = await createClient();
+    const { data: testimonials, error } = await supabase
+      .from('Testimonial')
+      .select('*')
+      .eq('isActive', true)
+      .order('createdAt', { ascending: false });
+
+    if (error) throw error;
 
     // Fallback if empty
-    if (testimonials.length === 0) {
+    if (!testimonials || testimonials.length === 0) {
       return NextResponse.json([
         {
           id: "1",
@@ -33,7 +37,8 @@ export async function GET() {
     }
 
     return NextResponse.json(testimonials);
-  } catch {
+  } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Failed to fetch testimonials" }, { status: 500 });
   }
 }

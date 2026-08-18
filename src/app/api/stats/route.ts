@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import { createClient } from "@/lib/supabase/server";
 
 export async function GET() {
   try {
-    const stats = await prisma.liveStats.findMany();
+    const supabase = await createClient();
+    const { data: stats, error } = await supabase.from('LiveStats').select('*');
+    
+    if (error) throw error;
     
     // Default fallback values if DB is empty
     const defaultStats = {
@@ -12,13 +15,14 @@ export async function GET() {
       sectors: 45
     };
 
-    const statsMap = stats.reduce((acc: Record<string, number>, stat: { key: string; value: number }) => {
+    const statsMap = (stats || []).reduce((acc: Record<string, number>, stat: { key: string; value: number }) => {
       acc[stat.key as keyof typeof defaultStats] = stat.value;
       return acc;
     }, defaultStats as Record<string, number>);
 
     return NextResponse.json(statsMap);
-  } catch {
+  } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Failed to fetch stats" }, { status: 500 });
   }
 }
