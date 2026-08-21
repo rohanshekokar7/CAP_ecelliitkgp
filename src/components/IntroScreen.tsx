@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface IntroScreenProps {
   onEnter: () => void;
@@ -10,6 +11,7 @@ interface IntroScreenProps {
 export default function IntroScreen({ onEnter }: IntroScreenProps) {
   const [isEntering, setIsEntering] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [showLogo, setShowLogo] = useState(false);
 
   const handleEnter = () => {
     setIsEntering(true);
@@ -28,29 +30,56 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
       <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] animate-[pulse-glow_4s_infinite] pointer-events-none"></div>
 
       {isEntering ? (
-        <video
-          src="/capvideo.mp4"
-          autoPlay
-          playsInline
-          preload="auto"
-          className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] object-cover z-20 -translate-x-1/2 -translate-y-1/2 -rotate-90"
-          ref={(el) => {
-            if (el) el.playbackRate = 1.0;
-          }}
-          onEnded={() => {
-            setIsExiting(true);
-            setTimeout(() => {
-              onEnter();
-            }, 1000);
-          }}
-          onError={() => {
-            // Fallback in case video fails to load
-            setIsExiting(true);
-            setTimeout(() => {
-              onEnter();
-            }, 1000);
-          }}
-        />
+        <>
+          <video
+            src="/capvideo.mp4"
+            autoPlay
+            playsInline
+            className={`absolute top-1/2 left-1/2 w-[100vh] h-[100vw] object-cover z-20 -translate-x-1/2 -translate-y-1/2 -rotate-90 transition-opacity duration-1000 ${showLogo ? 'opacity-20' : 'opacity-100'}`}
+            ref={(el) => {
+              if (el) el.playbackRate = 2.5;
+            }}
+            onEnded={() => {
+              setShowLogo(true);
+              setTimeout(() => {
+                setIsExiting(true);
+                setTimeout(() => {
+                  onEnter();
+                }, 1000);
+              }, 2500);
+            }}
+            onError={() => {
+              // Fallback in case video fails to load
+              setShowLogo(true);
+              setTimeout(() => {
+                setIsExiting(true);
+                setTimeout(() => {
+                  onEnter();
+                }, 1000);
+              }, 2500);
+            }}
+          />
+          <AnimatePresence>
+            {showLogo && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
+                transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
+                className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
+              >
+                <div className="relative w-80 h-80 md:w-[28rem] md:h-[28rem] drop-shadow-[0_0_35px_rgba(16,185,129,0.8)]">
+                  <Image
+                    src="/e_cell_logo.png"
+                    alt="E-Cell IIT KGP Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
       ) : (
         <div className="relative z-10 flex flex-col items-center justify-center select-none mt-10">
 
