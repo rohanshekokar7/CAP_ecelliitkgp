@@ -32,7 +32,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
       {isEntering ? (
         <>
           <video
-            src="/capvideo.mp4"
+            src="/cap_video_hero.mp4"
             autoPlay
             playsInline
             className={`absolute top-1/2 left-1/2 w-[100vh] h-[100vw] object-cover z-20 -translate-x-1/2 -translate-y-1/2 -rotate-90 transition-opacity duration-1000 ${showLogo ? 'opacity-20' : 'opacity-100'}`}
