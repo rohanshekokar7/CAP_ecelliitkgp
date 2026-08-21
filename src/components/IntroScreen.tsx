@@ -37,7 +37,7 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
             playsInline
             className={`absolute top-1/2 left-1/2 w-[100vh] h-[100vw] object-cover z-20 -translate-x-1/2 -translate-y-1/2 -rotate-90 transition-opacity duration-1000 ${showLogo ? 'opacity-20' : 'opacity-100'}`}
             ref={(el) => {
-              if (el) el.playbackRate = 2.5;
+              if (el) el.playbackRate = 1.75;
             }}
             onEnded={() => {
               setShowLogo(true);
