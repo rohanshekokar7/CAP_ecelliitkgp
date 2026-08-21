@@ -29,12 +29,12 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
 
       {isEntering ? (
         <video
-          src="/introvideo.mp4"
+          src="/capvideo.mp4"
           autoPlay
           playsInline
           className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] object-cover z-20 -translate-x-1/2 -translate-y-1/2 -rotate-90"
           ref={(el) => {
-            if (el) el.playbackRate = 4.0;
+            if (el) el.playbackRate = 1.0;
           }}
           onEnded={() => {
             setIsExiting(true);
