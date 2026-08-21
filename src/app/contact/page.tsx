@@ -23,14 +23,7 @@ const team = [
         phone: "+91 90754 57648",
         linkedin: "https://www.linkedin.com/in/ritesh-thosare-36a278321/"
     },
-    {
-        name: "SUMIT RAUT",
-        role: "WEB DEVELOPMENT",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQajPNAC2e4HDSXUAgbduG134FHO07BRGIVtZ_TruTZJQ&s=10",
-        email: "sumit@ecell.in",
-        phone: "+91 96073 30015",
-        linkedin: "https://www.linkedin.com/in/sumit74224/?skipRedirect=true"
-    },
+
 ];
 
 export default function ContactPage() {
