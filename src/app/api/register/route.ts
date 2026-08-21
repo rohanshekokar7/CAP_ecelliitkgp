@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       { message: 'Registration successful!', registration: registration?.[0] },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Registration Error:', error);
     return NextResponse.json(
       { error: 'Something went wrong. Please try again later.' },

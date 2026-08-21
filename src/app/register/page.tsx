@@ -65,8 +65,8 @@ export default function Register() {
       setTimeout(() => {
         router.push("/");
       }, 2000);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : String(err));
     } finally {
       setLoading(false);
     }

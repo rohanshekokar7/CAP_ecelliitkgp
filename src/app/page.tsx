@@ -22,12 +22,13 @@ export default function Home() {
       window.scrollTo(0, 0);
 
       // On a fresh page load (or refresh), the window object is reset.
-      if (!(window as any).__APP_LOADED__) {
+      if (!(window as unknown as { __APP_LOADED__?: boolean }).__APP_LOADED__) {
         sessionStorage.removeItem("hasEnteredSite");
-        (window as any).__APP_LOADED__ = true;
+        (window as unknown as { __APP_LOADED__: boolean }).__APP_LOADED__ = true;
       }
 
       if (sessionStorage.getItem("hasEnteredSite") === "true") {
+        // eslint-disable-next-line
         setHasEntered(true);
       }
       setIsClient(true);
