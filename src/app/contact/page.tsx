@@ -11,24 +11,27 @@ import Footer from "@/components/Footer";
 const team = [
     {
         name: "CHAITANYA GHUGE",
-        role: "EVENTS AND PR HEAD",
+        role: "PUBLIC RELATIONS AND EAD-LSM COORDINATOR",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJMdFlNqyv0iRquYx4RAQ1KhUXfcUFkUAzIqNxXfvGpQ&s=10",
-        email: "manas@ecell.in",
-        phone: "+91 99999 99999"
+        email: "chaitanya@ecell.in",
+        phone: "+91 76888 42669",
+        linkedin: "https://www.linkedin.com/in/chaitanya-ghuge-246a9b39b/"
     },
     {
         name: "RITESH THOSARE",
-        role: "EVENTS AND PR HEAD",
+        role: "PUBLIC RELATIONS, CORPORATE AND MEDIA RELATIONS",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLQs0bTf6S0x5raSe5nx4rVshC9d4yYLZcmEIUMb6q03icVD84GJ9WqHk&s=10",
-        email: "aditya@ecell.in",
-        phone: "+91 88888 88888"
+        email: "ritesh@ecell.in",
+        phone: "+91 90754 57648",
+        linkedin: "https://www.linkedin.com/in/ritesh-thosare-36a278321/"
     },
     {
         name: "SUMIT RAUT",
-        role: "WEB AND TECHNICAL HEAD",
+        role: "WEB DEVELOPMENT",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQajPNAC2e4HDSXUAgbduG134FHO07BRGIVtZ_TruTZJQ&s=10",
-        email: "yash@ecell.in",
-        phone: "+91 77777 77777"
+        email: "sumit@ecell.in",
+        phone: "+91 96073 30015",
+        linkedin: "https://www.linkedin.com/in/sumit74224/?skipRedirect=true"
     },
 ];
 
@@ -95,7 +98,7 @@ export default function ContactPage() {
                                         <a href={`mailto:${member.email}`} className="bg-emerald-500 text-black p-3 rounded-full hover:scale-110 hover:bg-emerald-400 hover:shadow-[0_0_15px_rgba(16,185,129,0.6)] transition-transform duration-300">
                                             <Mail className="w-5 h-5" />
                                         </a>
-                                        <a href="#" className="bg-emerald-500 text-black p-3 rounded-full hover:scale-110 hover:bg-emerald-400 hover:shadow-[0_0_15px_rgba(16,185,129,0.6)] transition-transform duration-300 cursor-default">
+                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="bg-emerald-500 text-black p-3 rounded-full hover:scale-110 hover:bg-emerald-400 hover:shadow-[0_0_15px_rgba(16,185,129,0.6)] transition-transform duration-300">
                                             <FaLinkedinIn className="w-5 h-5 fill-current" />
                                         </a>
                                     </div>
