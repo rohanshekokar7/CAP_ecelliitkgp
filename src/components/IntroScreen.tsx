@@ -62,10 +62,10 @@ export default function IntroScreen({ onEnter }: IntroScreenProps) {
           <AnimatePresence>
             {showLogo && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.5, rotate: -5 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                exit={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
-                transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
                 className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
               >
                 <div className="relative w-80 h-80 md:w-[28rem] md:h-[28rem] drop-shadow-[0_0_35px_rgba(16,185,129,0.8)]">
