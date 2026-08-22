@@ -138,7 +138,7 @@ export default function Incentives() {
                         color: isActive ? "#10b981" : "#475569"
                       }}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      className="absolute top-1/2 left-0 font-serif font-black text-2xl md:text-3xl lg:text-4xl flex items-center gap-3 -mt-4 drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                      className="absolute top-1/2 left-0 font-serif font-black text-2xl md:text-3xl lg:text-4xl flex items-center gap-3 mt-[-26px] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"
                     >
                       {isActive && (
                         <motion.div 
@@ -155,65 +155,35 @@ export default function Incentives() {
           </div>
 
           {/* CENTER: Dynamic Text (One at a time) */}
-          <div className="w-full md:w-[45%] h-[400px] md:h-[500px] flex flex-col justify-start z-20 relative px-4 lg:px-8">
-            <h2 className="text-xl md:text-2xl font-black text-emerald-500 uppercase tracking-widest mb-6 font-mono border-l-2 border-emerald-500 pl-4 shrink-0 absolute top-0 left-4 z-30 bg-black w-full py-2">
-              Incentives & Benefits
+          <div className="w-full md:w-[75%] h-[400px] md:h-[500px] flex flex-col justify-center items-start z-20 relative px-4 lg:px-12 text-left">
+            <h2 className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-[0.3em] absolute top-[53px] z-30">
+              INCENTIVES & BENEFITS
             </h2>
             
-            <div className="relative w-full h-full mt-16">
+            <div className="relative w-full h-full mt-24">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`text-${activePartner.id}`}
-                  initial={{ opacity: 0, y: 100 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -100 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="absolute inset-0 flex flex-col items-start justify-center gap-5 w-full max-w-full"
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="absolute inset-0 flex flex-col items-start justify-center gap-4 w-full max-w-full"
                 >
-                  <div className="px-4 py-1.5 bg-gradient-to-r from-[#1c242b] to-[#12181d] border border-emerald-900/50 rounded-md shadow-[0_0_15px_rgba(16,185,129,0.1)] flex items-center justify-center">
-                    <span className="text-xs font-black uppercase text-emerald-400 font-mono tracking-widest truncate">
+                  <div className="px-4 py-1.5 border border-slate-800 rounded-full bg-slate-900/40">
+                    <span className="text-[10px] md:text-xs font-medium uppercase text-emerald-500 tracking-[0.2em] truncate">
                       {activePartner.category}
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-black text-white uppercase font-serif tracking-wider drop-shadow-[0_0_20px_rgba(16,185,129,0.3)] leading-tight break-words pr-4">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-serif text-white tracking-wide leading-tight max-w-3xl">
                     {activePartner.name}
                   </h3>
                   
-                  <div className="mt-2 p-5 bg-gradient-to-b from-[#13181d]/80 to-[#0b0e11]/80 border border-emerald-900/30 rounded-xl shadow-inner backdrop-blur-sm">
-                    <p className="text-slate-200 text-sm md:text-base lg:text-lg font-sans leading-relaxed">
-                      <strong className="text-emerald-500 font-black text-xs md:text-sm mr-2 font-mono uppercase tracking-wider block mb-2 border-b border-emerald-900/50 pb-1 w-max">
-                        {activePartner.effectLabel}
-                      </strong>
+                  <div className="max-w-2xl">
+                    <p className="text-slate-300 text-base md:text-lg lg:text-xl font-light leading-relaxed text-left">
                       {activePartner.desc}
                     </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* RIGHT: 3D Marvel Card (One at a time) */}
-          <div className="w-full md:w-1/3 h-[400px] md:h-[500px] overflow-hidden flex items-start justify-end md:justify-center relative z-20 mt-8 md:mt-0 pr-4 lg:pr-8">
-            <div className="relative w-full h-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`img-${activePartner.id}`}
-                  initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -100, scale: 0.8 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="absolute inset-0 w-full h-full flex items-center justify-center"
-                >
-                  <div className="relative w-full max-w-[200px] lg:max-w-[240px] h-[80%] flex items-center justify-center">
-                    {/* Background Glow */}
-                    <div className="absolute inset-0 bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none animate-pulse"></div>
-                    
-                    <img 
-                      src={activePartner.image}
-                      alt={activePartner.name}
-                      className="w-full h-full object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] z-10 hover:scale-[1.03] hover:-translate-y-3 transition-transform duration-500 cursor-pointer"
-                    />
                   </div>
                 </motion.div>
               </AnimatePresence>

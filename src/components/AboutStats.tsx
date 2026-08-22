@@ -20,11 +20,7 @@ const storyPhases: StoryPhase[] = [
     title: "ABOUT US",
     subtitle: "MISSION & VISION",
     description: "Entrepreneurship Cell, IIT Kharagpur fosters innovation and nurtures entrepreneurial talent across India. We empower individuals to turn ideas into impactful ventures by connecting startups with mentors, investors, and essential resources.",
-    badges: [
-      { label: "INNOVATION", sub: "Core Driving Force" },
-      { label: "LEADERSHIP", sub: "Student Centric" },
-      { label: "EXCELLENCE", sub: "Nationwide Standards" }
-    ]
+    badges: []
   },
   {
     id: 1,
@@ -32,11 +28,7 @@ const storyPhases: StoryPhase[] = [
     title: "WHAT IS EAD & LSM?",
     subtitle: "PAN-INDIA ENTREPRENEURSHIP DRIVE",
     description: "Entrepreneurship Awareness Drive (EAD) & Leadership Summit (LSM) are E-Cell IIT Kharagpur's premier pan-India initiatives spanning 25+ major cities, hosting prominent VCs, unicorn founders, and over 30,000+ aspiring entrepreneurs.",
-    badges: [
-      { label: "25+", sub: "Cities Pan-India" },
-      { label: "30,000+", sub: "Annual Footfall" },
-      { label: "250+", sub: "Industry Mentors" }
-    ]
+    badges: []
   },
   {
     id: 2,
@@ -44,11 +36,7 @@ const storyPhases: StoryPhase[] = [
     title: "WHAT IS CAMPUS AMBASSADOR?",
     subtitle: "LEAD ENTREPRENEURSHIP ON YOUR CAMPUS",
     description: "E-Cell IIT Kharagpur's Campus Ambassador Program is an elite nationwide leadership internship. It empowers student visionaries to spearhead innovation drives, build strategic campus networks, organize flagship events, and earn exclusive rewards.",
-    badges: [
-      { label: "1000+", sub: "Ambassadors" },
-      { label: "500+", sub: "Colleges Represented" },
-      { label: "2000+", sub: "Startups Connected" }
-    ]
+    badges: []
   }
 ];
 
